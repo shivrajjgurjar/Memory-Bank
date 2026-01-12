@@ -1,0 +1,43 @@
+<div class="min-h-screen transition-colors duration-500 ease-in-out relative flex flex-col bg-[#F7F6F3] dark:bg-[#121212]">
+  
+  @if (store.isLocked()) {
+    <app-lock-screen class="fixed inset-0 z-[100]" />
+  }
+
+  @if (store.currentView() !== 'ONBOARDING' && store.currentView() !== 'AUTH') {
+    <div class="fixed top-6 right-6 z-50 flex gap-3 safe-area-top">
+      
+      <button (click)="store.setView('PROFILE')" 
+              class="w-10 h-10 rounded-full bg-white dark:bg-[#1A1A1A] border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
+              title="Profile & Settings">
+        <span class="font-serif font-bold text-sm">
+          {{ store.user()?.name?.charAt(0) || '?' }}
+        </span>
+      </button>
+
+      <button (click)="store.toggleTheme()" 
+              class="w-10 h-10 rounded-full bg-white dark:bg-[#1A1A1A] border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-black dark:hover:text-white transition-all duration-200 shadow-sm hover:shadow-md active:scale-95">
+        <span class="text-lg leading-none">
+          @if (store.isDarkMode()) { ☀ } @else { ☾ }
+        </span>
+      </button>
+
+    </div>
+  }
+
+  <main class="flex-grow w-full relative z-0">
+    @switch (store.currentView()) {
+      @case ('ONBOARDING') { <app-onboarding /> }
+      @case ('AUTH') { <app-auth /> }
+      @case ('VAULT') { <app-vault /> }
+      @case ('EDITOR') { <app-editor /> }
+      @case ('REVIEW') { <app-review /> }
+      @case ('DETAIL') { <app-memory-detail /> }
+      @case ('PROFILE') { <app-profile /> }
+      @case ('SUBSCRIPTION') { <app-subscription /> }
+      @case ('SECURITY') { <app-security /> }
+      @case ('LIMIT_REACHED') { <app-limit-screen /> }
+    }
+  </main>
+
+</div>
