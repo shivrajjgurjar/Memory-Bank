@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MEMORY BANK</title>
+  <!-- Mobile Optimization: Prevent zoom, handle notches (cover), disable user scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Lora', serif;
+    }
+    
+    body {
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      /* Mobile: Remove gray tap highlight */
+      -webkit-tap-highlight-color: transparent;
+      /* Mobile: Prevent rubber-banding on body */
+      overscroll-behavior-y: none;
+    }
+
+    .font-serif { font-family: var(--font-serif); }
+    .font-sans { font-family: var(--font-sans); }
+    
+    /* PREMIUM SCROLLBAR HIDING */
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    html, body {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    /* Fade In Animation */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+    /* Ethereal Exit (Deletion Animation) */
+    @keyframes etherealExit {
+      0% { 
+        opacity: 1; 
+        filter: blur(0); 
+        transform: translateX(0) scale(1);
+      }
+      100% { 
+        opacity: 0; 
+        filter: blur(12px); 
+        transform: translateX(40px) scale(0.95);
+      }
+    }
+    .animate-ethereal-exit {
+      animation: etherealExit 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      pointer-events: none;
+    }
+
+    /* Global Button Interaction - Smooth & Minimal */
+    button {
+      transition: transform 0.1s ease-out, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      touch-action: manipulation; /* Improves touch response */
+      user-select: none; /* App-like feel */
+    }
+    button:active {
+      transform: scale(0.96);
+      opacity: 0.9;
+    }
+    
+    /* Prevent selecting UI text, allow selecting Content text */
+    .select-none { user-select: none; -webkit-user-select: none; }
+    .prose { user-select: text; -webkit-user-select: text; }
+
+    /* Input Reset */
+    input, textarea {
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "rxjs": "https://esm.sh/rxjs@^7.8.2?conditions=es2015",
+    "rxjs/operators": "https://esm.sh/rxjs@^7.8.2/operators?conditions=es2015",
+    "rxjs/ajax": "https://esm.sh/rxjs@^7.8.2/ajax?conditions=es2015",
+    "rxjs/webSocket": "https://esm.sh/rxjs@^7.8.2/webSocket?conditions=es2015",
+    "rxjs/testing": "https://esm.sh/rxjs@^7.8.2/testing?conditions=es2015",
+    "rxjs/fetch": "https://esm.sh/rxjs@^7.8.2/fetch?conditions=es2015",
+    "@angular/forms": "https://esm.sh/@angular/forms@^21.0.8?external=rxjs",
+    "@angular/platform-browser": "https://esm.sh/@angular/platform-browser@^21.0.8?external=rxjs",
+    "@angular/compiler": "https://esm.sh/@angular/compiler@^21.0.8?external=rxjs",
+    "@angular/common": "https://esm.sh/@angular/common@^21.0.8?external=rxjs",
+    "@angular/core": "https://esm.sh/@angular/core@^21.0.8?external=rxjs",
+    "d3": "https://esm.sh/d3@7.9.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-[#F7F6F3] text-[#1C1C1E] dark:bg-[#121212] dark:text-[#E5E5E5] transition-colors duration-500 ease-in-out h-full w-full overflow-y-auto">
+  <app-root></app-root>
+</body>
+</html>
